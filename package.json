@@ -3,7 +3,7 @@
     "version": "1.0.1",
     "private": true,
     "description": "Bot oficial de Vanetti en estado de prueba.",
-    "homepage": "https://github.com/zhycorp/disc-11#readme",
+    "homepage": "https://github.com/iTzKrav/vant-bot#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/zhycorp/disc-11.git"
@@ -12,7 +12,7 @@
         "url": "https://github.com/zhycorp/disc-11/issues"
     },
     "license": "AGPL-3.0",
-    "author": "Zhycorp <support@zhycorp.com> (https://github.com/zhycorp)",
+    "author": "Krav <kravshezco@gmail.com> (https://github.com/iTzKrav)",
     "main": "start.js",
     "scripts": {
         "build": "npm run lint && npm run compile",
