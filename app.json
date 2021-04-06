@@ -4,87 +4,87 @@
     "logo": "https://i.imgur.com/aPPapMg.png",
     "env": {
         "SECRET_DISCORD_TOKEN": {
-            "description": "Your Discord bot's token",
+            "description": "La ficha de tu bot de Discord",
             "required": true
         },
         "CONFIG_PREFIX": {
-            "description": "Your bot's prefix",
+            "description": "El prefijo de tu bot",
             "required": true
         },
         "CONFIG_EMBED_COLOR": {
-            "description": "The color for your bot's embed message (hex code without hashtag)"
+            "description": "El color del mensaje de inserción de su bot (código hexadecimal sin hashtag)"
         },
         "CONFIG_OWNERS": {
-            "description": "A Discord ID, use comma if you want to add more than 1 owner (DO NOT ADD SOMEONE ELSE'S ID THAT YOU DON'T TRUST)",
+            "description": "Una ID de Discord, use coma si desea agregar más de 1 propietario (NO AGREGUE LA ID DE OTRA PERSONA EN LA QUE NO CONFIAR)",
             "required": false
         },
         "CONFIG_YOUTUBE_DATA_STRATEGY": {
-            "description": "Strategy for getting video info from youtube (scrape or api, default: scrape)",
+            "description": "Estrategia para obtener información de video de youtube (scrape o api, predeterminado: scrape)",
             "required": false
         },
         "SECRET_YT_API_KEY": {
-            "description": "Your YouTube API v3 key for retrieving video infotmation from YouTube if CONFIG_YOUTUBE_DATA_STRATEGY is set to api"
+            "description": "Su clave de la API de YouTube v3 para recuperar información de video de YouTube si CONFIG_YOUTUBE_DATA_STRATEGY está configurado en api"
         },
         "CONFIG_TOTALSHARDS": {
-            "description": "Total shards to spawn, use \"auto\" or a number (default: auto)",
+            "description": "Total de fragmentos para generar, use \"auto\" o un número (predeterminado: automático)",
             "required": false
         },
         "CONFIG_DEFAULT_VOLUME": {
-            "description": "Default volume for music (default: 50)",
+            "description": "Volumen predeterminado de la música (predeterminado: 50)",
             "required": false
         },
         "CONFIG_MAX_VOLUME": {
-            "description": "Max volume allowed for music (default: 100)",
+            "description": "Volumen máximo permitido para la música (predeterminado: 100)",
             "required": false
         },
         "CONFIG_DISABLE_SONG_SELECTION": {
-            "description": "Whether to disable selecting music on play command, this will automatically selects the first order from search results (default: no)",
+            "description": "Ya sea para deshabilitar la selección de música en el comando de reproducción, esto seleccionará automáticamente el primer orden de los resultados de búsqueda (predeterminado: no)",
             "required": false
         },
         "CONFIG_SEARCH_MAX_RESULTS": {
-            "description": "Maximum music to list in song selection (default: 10, max: 10)",
+            "description": "Máximo de música para listar en la selección de canciones (predeterminado: 10, máximo: 10)",
             "required": false
         },
         "CONFIG_SELECT_TIMEOUT": {
-            "description": "Music selection timeout when searching (default: 20 <20 seconds>)",
+            "description": "Tiempo de espera de selección de música durante la búsqueda (predeterminado: 20 <20 segundos>)",
             "required": false
         },
         "CONFIG_ALLOW_DUPLICATE": {
-            "description": "Whether to allow users to add duplicate of music (yes or no, default: no)",
+            "description": "Ya sea para permitir que los usuarios agreguen un duplicado de música (sí o no, predeterminado: no)",
             "required": false
         },
         "CONFIG_DELETE_QUEUE_TIMEOUT": {
-            "description": "Timeout in seconds before queue is deleted when no one is in the voice channel (default: 180 <3 minutes>)",
+            "description": "Tiempo de espera en segundos antes de que se elimine la cola cuando no hay nadie en el canal de voz (predeterminado: 180 <3 minutos>)",
             "required": false
         },
         "CONFIG_CACHE_YOUTUBE_DOWNLOADS": {
-            "description": "Whether to download and cache music from YouTube (yes or no, default: no)",
+            "description": "Ya sea para descargar y almacenar en caché la música de YouTube (sí o no, predeterminado: no)",
             "required": false
         },
         "CONFIG_CACHE_MAX_LENGTH": {
-            "description": "Max music length in seconds that are allowed to be cached (default: 5400 <1 hour 30 minutes>)",
+            "description": "Duración máxima de la música en segundos que se permite almacenar en caché (predeterminado: 5400 <1 hora y 30 minutos>)",
             "required": false
         },
         "CONFIG_DISABLE_INVITE_CMD": {
-            "description": "Whether to disable the invite command or not (default: no)",
+            "description": "Ya sea para deshabilitar el comando de invitación o no (predeterminado: no)",
             "required": false
         },
         "CONFIG_DEBUG": {
-            "description": "Should logging use debug level? Please note that this is not recommended in production (default: no)",
+            "description": "¿Debería utilizar el registro el nivel de depuración? Tenga en cuenta que esto no se recomienda en producción (predeterminado: no)",
             "required": false
         },
         "CONFIG_FETCH_ALL_USERS": {
-            "description": "Whether to fetch all users on startup (default: no) (warning: increased memory usage especially for bots with large users). NOTE: You need to enable privileged GUILD_MEMBERS Intents on the developer page)",
+            "description": "Ya sea para buscar a todos los usuarios al inicio (predeterminado: no) (advertencia: mayor uso de memoria, especialmente para bots con grandes usuarios). NOTA: Debe habilitar Intents GUILD_MEMBERS privilegiados en la página del desarrollador)",
             "required": false
         },
         "CONFIG_STATUS_TYPE": {
-            "description": "What type of status does the bot use? (playing, listening, or watching, default: listening)",
+            "description": "¿Qué tipo de estado usa el bot? (reproducir, escuchar o mirar, predeterminado: escuchar)",
             "required": false
         },
         "CONFIG_STATUS_ACTIVITY": {
-            "description": "What status does the bot display? (default: \"music on {guildsCount} servers\") (available variables: guildsCount, usersCount, playingCount, and botPrefix). NOTE ON {usersCount} VARIABLE: This only displays cached usersCount, to get full usersCount, please enable CONFIG_FETCH_ALL_USERS",
+            "description": "¿Qué estado muestra el bot? (predeterminado: \"música en {guildsCount} servidores\") (variables disponibles: guildsCount, usersCount, playingCount y botPrefix). NOTA SOBRE {usersCount} VARIABLE: Esto solo muestra el usersCount en caché, para obtener el usersCount completo, habilite CONFIG_FETCH_ALL_USERS",
             "required": false
         }
-    },
-    "repository": "https://github.com/zhycorp/disc-11"
+    }
+    "repository": "https://github.com/iTzKrav/vant-bot"
 }
