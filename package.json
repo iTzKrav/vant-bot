@@ -2,7 +2,7 @@
     "name": "disc-11",
     "version": "1.55.5",
     "private": true,
-    "description": "A dedicated open-source music bot for Zhycorp based on Jukebox",
+    "description": "Bot oficial de Vanetti en estado de prueba.",
     "homepage": "https://github.com/zhycorp/disc-11#readme",
     "repository": {
         "type": "git",

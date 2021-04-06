@@ -31,8 +31,8 @@ RUN npm prune --production
 # Get ready for production
 FROM node:14.16.0-alpine
 
-LABEL name "Disc 11"
-LABEL maintainer "Zhycorp <support@zhycorp.com>"
+LABEL name "VANT BOT"
+LABEL maintainer "Krav <kravshezco@gmail.com>"
 LABEL original-maintainer "Hazmi35 <contact@hzmi.xyz>"
 
 WORKDIR /app

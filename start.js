@@ -25,7 +25,7 @@ function start(glitch = false) {
         console.info("[INFO] Glitch environment detected, trying to compile...");
         execSync("npm run compile");
         console.info("[INFO] Iniciando el bot...");
-        if (process.env.CONFIG_CACHE_YOUTUBE_DOWNLOADS === "yes") console.warn("[WARN] Using cache on Glitch environment is not recommended, it will eat the project storage drastically.");
+        if (process.env.CONFIG_CACHE_YOUTUBE_DOWNLOADS === "yes") console.warn("[WARN] No se recomienda el uso de caché en el entorno Glitch, consumirá drásticamente el almacenamiento del proyecto.");
     }
     require("./dist/main.js");
 }
