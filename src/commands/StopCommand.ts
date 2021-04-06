@@ -7,7 +7,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["st", "disconnect", "dc"],
     name: "stop",
-    description: "Stop the music player",
+    description: "Detener el reproductor de música",
     usage: "{prefix}stop"
 })
 export class StopCommand extends BaseCommand {
@@ -20,7 +20,7 @@ export class StopCommand extends BaseCommand {
         message.guild?.queue?.voiceChannel?.leave();
         message.guild!.queue = null;
 
-        message.channel.send(createEmbed("info", "⏹ **|** The music player has stopped"))
+        message.channel.send(createEmbed("info", "⏹ **|** El reproductor de música se ha detenido"))
             .catch(e => this.client.logger.error("STOP_CMD_ERR:", e));
     }
 }

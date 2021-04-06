@@ -7,7 +7,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["vol"],
     name: "volume",
-    description: "Show or change the music player's volume",
+    description: "Mostrar o cambiar el volumen del reproductor de música",
     usage: "{prefix}volume [new volume]"
 })
 export class VolumeCommand extends BaseCommand {
@@ -17,10 +17,10 @@ export class VolumeCommand extends BaseCommand {
     public execute(message: IMessage, args: string[]): any {
         let volume = Number(args[0]);
 
-        if (isNaN(volume)) return message.channel.send(createEmbed("info", `🔊 **|** The current volume is **\`${message.guild!.queue!.volume.toString()}\`**`));
+        if (isNaN(volume)) return message.channel.send(createEmbed("info", `🔊 **|** El volumen actual es **\`${message.guild!.queue!.volume.toString()}\`**`));
 
         if (volume < 0) volume = 0;
-        if (volume === 0) return message.channel.send(createEmbed("error", "Please pause the music player instead of setting the volume to **\`0\`**"));
+        if (volume === 0) return message.channel.send(createEmbed("error", "Pausa el reproductor de música en lugar de ajustar el volumen a **\`0\`**"));
         if (Number(args[0]) > this.client.config.maxVolume) {
             return message.channel.send(
                 createEmbed("error", `I can't set the volume above **\`${this.client.config.maxVolume}\`**`)
