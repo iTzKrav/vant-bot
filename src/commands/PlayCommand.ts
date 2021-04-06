@@ -26,7 +26,7 @@ export class PlayCommand extends BaseCommand {
         const voiceChannel = message.member!.voice.channel!;
         if (!args[0]) {
             return message.channel.send(
-                createEmbed("error", `Uso no válido, ver **\`${this.client.config.prefix}help play\`** for more information`)
+                createEmbed("error", `Uso no válido, ver **\`${this.client.config.prefix}help play\`** para más información`)
             );
         }
         const searchString = args.join(" ");
@@ -34,7 +34,7 @@ export class PlayCommand extends BaseCommand {
 
         if (message.guild?.queue !== null && voiceChannel.id !== message.guild?.queue.voiceChannel?.id) {
             return message.channel.send(
-                createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`)
+                createEmbed("warn", `El reproductor de música ya está siendo utilizado en **${message.guild?.queue.voiceChannel?.name}** voice channel`)
             );
         }
 
@@ -45,7 +45,7 @@ export class PlayCommand extends BaseCommand {
                 const videos = await playlist.getVideos();
                 let skippedVideos = 0;
                 const addingPlaylistVideoMessage = await message.channel.send(
-                    createEmbed("info", `Adding all videos in **[${playlist.title}](${playlist.url})** playlist, please wait...`)
+                    createEmbed("info", `Agregando todos los videos en **[${playlist.title}](${playlist.url})** la lista de reproducción, espere`)
                         .setThumbnail(playlist.thumbnailURL)
                 );
                 for (const video of Object.values(videos)) {
@@ -59,24 +59,24 @@ export class PlayCommand extends BaseCommand {
                 }
                 if (skippedVideos !== 0) {
                     message.channel.send(
-                        createEmbed("warn", `${skippedVideos} ${skippedVideos >= 2 ? `videos` : `video`} are skipped because it's a private video`)
+                        createEmbed("warn", `${skippedVideos} ${skippedVideos >= 2 ? `videos` : `video`} se omite porque es un video privado`)
                     ).catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 }
                 message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("YT_PLAYLIST_ERR:", e));
                 if (skippedVideos === playlist.itemCount) {
                     return message.channel.send(
-                        createEmbed("error", `Failed to load playlist **[${playlist.title}](${playlist.url})** because all of the items are private videos`)
+                        createEmbed("error", `No se pudo cargar la lista de reproducción **[${playlist.title}](${playlist.url})** porque todos los elementos son videos privados`)
                             .setThumbnail(playlist.thumbnailURL)
                     );
                 }
                 return message.channel.send(
-                    createEmbed("info", `✅ **|** All videos in **[${playlist.title}](${playlist.url})** playlist has been added to the queue`)
+                    createEmbed("info", `✅ **|** Todos los videos en **[${playlist.title}](${playlist.url})** la lista de reproducción se ha agregado a la cola.`)
                         .setThumbnail(playlist.thumbnailURL)
 
                 );
             } catch (e) {
                 this.client.logger.error("YT_PLAYLIST_ERR:", new Error(e.stack));
-                return message.channel.send(createEmbed("error", `I could not load the playlist\nError: **\`${e.message}\`**`));
+                return message.channel.send(createEmbed("error", `No pude cargar la lista de reproducción\nError: **\`${e.message}\`**`));
             }
         } else if (/^(?:https:\/\/open\.spotify\.com\/(?:user\/[A-Za-z0-9]+\/)?|spotify:)(album|playlist|track)(?:[/:])([A-Za-z0-9]+).*$/g.exec(url)) {
             const input = /^(?:https:\/\/open\.spotify\.com\/(?:user\/[A-Za-z0-9]+\/)?|spotify:)(album|playlist|track)(?:[/:])([A-Za-z0-9]+).*$/g.exec(url) as any;
@@ -92,7 +92,7 @@ export class PlayCommand extends BaseCommand {
                     const playlistSearchStrings: string[] = await playlistData.tracks.items.map((item: any): string => `${item.track.artists[0].name} - ${item.track.name}`);
                     this.client.logger.debug(playlistSearchStrings.join("\n"));
                     const addingPlaylistVideoMessage = await message.channel.send(
-                        createEmbed("info", `Añadiendo toda la música in **[${playlistData.name}](${playlistData.external_urls.spotify})** lista de reproducción, por favor espere ...`)
+                        createEmbed("info", `Añadiendo toda la música en **[${playlistData.name}](${playlistData.external_urls.spotify})** la lista de reproducción, por favor espere ...`)
                             .setThumbnail(playlistData.images[0].url)
                     );
                     for (const title of playlistSearchStrings) {
@@ -102,7 +102,7 @@ export class PlayCommand extends BaseCommand {
                     }
                     message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("SP_PLAYLIST_ERR:", e));
                     return message.channel.send(
-                        createEmbed("info", `✅ **|** Toda la música in **[${playlistData.name}](${playlistData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
+                        createEmbed("info", `✅ **|** Toda la música en **[${playlistData.name}](${playlistData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
                             .setThumbnail(playlistData.images[0].url)
                     );
                 } catch (e) {
@@ -115,7 +115,7 @@ export class PlayCommand extends BaseCommand {
                     const playlistSearchStrings: string[] = await albumData.tracks.items.map((item: any): string => `${item.artists[0].name} - ${item.name}`);
                     this.client.logger.debug(playlistSearchStrings.join("\n"));
                     const addingPlaylistVideoMessage = await message.channel.send(
-                        createEmbed("info", `Añadiendo toda la música in **[${albumData.name}](${albumData.external_urls.spotify})** lista de reproducción, por favor espere ...`)
+                        createEmbed("info", `Añadiendo toda la música en **[${albumData.name}](${albumData.external_urls.spotify})** la lista de reproducción, por favor espere ...`)
                             .setThumbnail(albumData.images[0].url)
                     );
                     for (const title of playlistSearchStrings) {
@@ -125,12 +125,12 @@ export class PlayCommand extends BaseCommand {
                     }
                     message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("SP_PLAYLIST_ERR:", e));
                     return message.channel.send(
-                        createEmbed("info", `✅ **|** Toda la música in **[${albumData.name}](${albumData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
+                        createEmbed("info", `✅ **|** Toda la música en **[${albumData.name}](${albumData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
                             .setThumbnail(albumData.images[0].url)
                     );
                 } catch (e) {
                     this.client.logger.error("SP_PLAYLIST_ERR:", new Error(e.stack));
-                    return message.channel.send(createEmbed("error", `I could not load the playlist\nError: **\`${e.message}\`**`));
+                    return message.channel.send(createEmbed("error", `No pude cargar la lista de reproducción\nError: **\`${e.message}\`**`));
                 }
             }
         } else {
@@ -149,7 +149,7 @@ export class PlayCommand extends BaseCommand {
                             .setAuthor("Selección de música", message.client.user?.displayAvatarURL() as string)
                             .setDescription(`\`\`\`${videos.map(video => `${++index} - ${this.cleanTitle(video.title)}`).join("\n")}\`\`\`` +
                                 "\nSeleccione uno de los resultados que van desde **\`1-10\`**")
-                            .setFooter("• Escribe CANCELAR o C para cancelar la selección de música"));
+                            .setFooter("• Escribe C para cancelar la selección de música"));
                         try {
                             // eslint-disable-next-line no-var
                             var response = await message.channel.awaitMessages((msg2: IMessage) => {
@@ -175,7 +175,7 @@ export class PlayCommand extends BaseCommand {
                     }
                 } catch (err) {
                     this.client.logger.error("YT_SEARCH_ERR:", err);
-                    return message.channel.send(createEmbed("error", `I could not obtain any search results\nError: **\`${err.message}\`**`));
+                    return message.channel.send(createEmbed("error", `No pude obtener ningún resultado de búsqueda\nError: **\`${err.message}\`**`));
                 }
                 return this.handleVideo(video, message, voiceChannel);
             }
@@ -193,21 +193,21 @@ export class PlayCommand extends BaseCommand {
         if (message.guild?.queue) {
             if (!this.client.config.allowDuplicate && message.guild.queue.songs.find(s => s.id === song.id)) {
                 return message.channel.send(
-                    createEmbed("warn", `🎶 **|** **[${song.title}](${song.url})** is already queued, ` +
+                    createEmbed("warn", `🎶 **|** **[${song.title}](${song.url})** ya esta en cola, ` +
                 `please use **\`${this.client.config.prefix}repeat\`** command instead`)
                         .setTitle("Ya en cola")
                 );
             }
             message.guild.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ **|** **[${song.title}](${song.url})** has been added to the queue`).setThumbnail(song.thumbnail))
+                message.channel.send(createEmbed("info", `✅ **|** **[${song.title}](${song.url})** ya esta en cola`).setThumbnail(song.thumbnail))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
         } else {
             message.guild!.queue = new ServerQueue(message.channel as ITextChannel, voiceChannel);
             message.guild?.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ **|** **[${song.title}](${song.url})** has been added to the queue`).setThumbnail(song.thumbnail))
+                message.channel.send(createEmbed("info", `✅ **|** **[${song.title}](${song.url})** ya esta en cola`).setThumbnail(song.thumbnail))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
             try {
@@ -217,12 +217,12 @@ export class PlayCommand extends BaseCommand {
                 message.guild?.queue.songs.clear();
                 message.guild!.queue = null;
                 this.client.logger.error("PLAY_CMD_ERR:", error);
-                message.channel.send(createEmbed("error", `An error occured while joining the voice channel, reason: **\`${error.message}\`**`))
+                message.channel.send(createEmbed("error", `Ocurrió un error al unirse al canal de voz, motivo: **\`${error.message}\`**`))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 return undefined;
             }
             this.play(message.guild!).catch(err => {
-                message.channel.send(createEmbed("error", `An error occurred while trying to play music, reason: **\`${err.message}\`**`))
+                message.channel.send(createEmbed("error", `Se produjo un error al intentar reproducir música, motivo: **\`${err.message}\`**`))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 return this.client.logger.error("PLAY_CMD_ERR:", err);
             });
@@ -237,7 +237,7 @@ export class PlayCommand extends BaseCommand {
             if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
             if (serverQueue.lastVoiceStateUpdateMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastVoiceStateUpdateMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
             serverQueue.textChannel?.send(
-                createEmbed("info", `⏹ **|** The music has ended, use **\`${guild.client.config.prefix}play\`** to play a music again`)
+                createEmbed("info", `⏹ **|** La musica ha terminado, usa **\`${guild.client.config.prefix}play\`** para reproducir música nuevamente.`)
             ).catch(e => this.client.logger.error("PLAY_ERR:", e));
             serverQueue.connection?.disconnect();
             return guild.queue = null;
@@ -260,7 +260,7 @@ export class PlayCommand extends BaseCommand {
                 serverQueue.playing = true;
                 this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids}]` : ""} Music: "${song.title}" on ${guild.name} has started`);
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `▶ **|** Started playing: **[${song.title}](${song.url})**`).setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `▶ **|** Empezó a sonar: **[${song.title}](${song.url})**`).setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e));
             })
@@ -269,12 +269,12 @@ export class PlayCommand extends BaseCommand {
                 // eslint-disable-next-line max-statements-per-line
                 if (serverQueue.loopMode === 0) { serverQueue.songs.deleteFirst(); } else if (serverQueue.loopMode === 2) { serverQueue.songs.deleteFirst(); serverQueue.songs.addSong(song); }
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `⏹ **|** Stopped playing **[${song.title}](${song.url})**`).setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `⏹ **|** Dejó de sonar **[${song.title}](${song.url})**`).setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e))
                     .finally(() => {
                         this.play(guild).catch(e => {
-                            serverQueue.textChannel?.send(createEmbed("error", `An error occurred while trying to play music, reason: **\`${e}\`**`))
+                            serverQueue.textChannel?.send(createEmbed("error", `Se produjo un error al intentar reproducir música, motivo: **\`${e}\`**`))
                                 .catch(e => this.client.logger.error("PLAY_ERR:", e));
                             serverQueue.connection?.dispatcher.end();
                             return this.client.logger.error("PLAY_ERR:", e);
@@ -282,7 +282,7 @@ export class PlayCommand extends BaseCommand {
                     });
             })
             .on("error", (err: Error) => {
-                serverQueue.textChannel?.send(createEmbed("error", `An error occurred while playing music, reason: **\`${err.message}\`**`))
+                serverQueue.textChannel?.send(createEmbed("error", `Se produjo un error al reproducir música, motivo: **\`${err.message}\`**`))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 guild.queue?.voiceChannel?.leave();
                 guild.queue = null;
