@@ -18,7 +18,7 @@ export class HelpCommand extends BaseCommand {
             message.channel.send(
                 new MessageEmbed()
                     .setColor(this.client.config.embedColor)
-                    .setAuthor(`Information for the ${command.meta.name} command`, "https://i.imgur.com/aPPapMg.png")
+                    .setAuthor(`Información para el comando ${command.meta.name}`, "https://i.imgur.com/aPPapMg.png")
                     .addFields({ name: "**Nombre**", value: command.meta.name, inline: true },
                         { name: "**Descripción**", value: command.meta.description, inline: true },
                         { name: "**Alias**", value: `${Number(command.meta.aliases?.length) > 0 ? command.meta.aliases?.map(c => `${c}`).join(", ") as string : "None"}`, inline: true },

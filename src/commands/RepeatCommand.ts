@@ -8,7 +8,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["loop", "music-repeat", "music-loop"],
     name: "repeat",
-    description: "Repeat current music or the queue",
+    description: "Repite la música actual o la cola",
     usage: "{prefix}repeat [all | one | disable]"
 })
 export class RepeatCommand extends BaseCommand {
@@ -38,14 +38,14 @@ export class RepeatCommand extends BaseCommand {
         const modeEmoji = ["▶", "🔂", "🔁"];
         const mode = args[0] as string | undefined;
         if (mode === undefined) {
-            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** Current repeat mode is set to **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
+            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** El modo de repetición actual está configurado en **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         } else if (Object.keys(modes).includes(mode)) {
             message.guild!.queue!.loopMode = modes[mode];
-            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** The repeat mode has set to **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
+            message.channel.send(createEmbed("info", `${modeEmoji[message.guild!.queue!.loopMode]} **|** El modo de repetición se ha establecido en **\`${modeTypes[message.guild!.queue!.loopMode]}\`**`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         } else {
-            message.channel.send(createEmbed("error", `Invalid usage, see **\`${this.client.config.prefix}help ${this.meta.name}\`** for more information`))
+            message.channel.send(createEmbed("error", `Uso no válido, consulte **\`${this.client.config.prefix}help ${this.meta.name}\`** para más información`))
                 .catch(e => this.client.logger.error("REPEAT_CMD_ERR:", e));
         }
     }
