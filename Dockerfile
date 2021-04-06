@@ -1,7 +1,7 @@
 FROM node:14.16.0-alpine as build-stage
 
-LABEL name "Disc 11 (build stage)"
-LABEL maintainer "Zhycorp <support@zhycorp.com>"
+LABEL name "VANT BOT (BETA)"
+LABEL maintainer "Krav <kravshezco@gmail.com>"
 LABEL original-maintainer "Hazmi35 <contact@hzmi.xyz>"
 
 WORKDIR /tmp/build

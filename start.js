@@ -2,7 +2,7 @@ const http = require("http");
 const { execSync } = require("child_process");
 
 const isThisGlitch = (
-    process.env.PROJECT_DOMAIN !== undefined &&
+    process.env.PROJECT_DOMAIN !== quaint-gray-ermine &&
     process.env.PROJECT_INVITE_TOKEN !== undefined &&
     process.env.API_SERVER_EXTERNAL !== undefined &&
     process.env.PROJECT_REMIX_CHAIN !== undefined);
