@@ -19,17 +19,15 @@ export class AboutCommand extends BaseCommand {
         message.channel.send(
             createEmbed("info", `
 \`\`\`asciidoc
-Users count        :: ${await this.client.getUsersCount()}
-Channels count     :: ${await this.client.getChannelsCount()}
-Guilds count       :: ${await this.client.getGuildsCount()}
-Shards count       :: ${this.client.shard ? `${this.client.shard.count}` : "N/A"}
+Usuarios           :: ${await this.client.getUsersCount()}
+Canales            :: ${await this.client.getChannelsCount()}
 Shard ID           :: ${this.client.shard ? `${this.client.shard.ids[0]}` : "N/A"}
-Playing Music on   :: ${await this.client.getTotalPlaying()} guilds
+Reproduciendo en   :: ${await this.client.getTotalPlaying()} guilds
 
-Platform           :: ${process.platform}
+Plataforma         :: ${process.platform}
 Arch               :: ${process.arch}
 OS Uptime          :: ${formatMS(osUptime() * 1000)}
-Memory             :: ${this.bytesToSize(await this.client.getTotalMemory("rss"))}
+Memoria            :: ${this.bytesToSize(await this.client.getTotalMemory("rss"))}
 Process Uptime     :: ${formatMS(process.uptime() * 1000)}
 Bot Uptime         :: ${formatMS(this.client.uptime!)}
 
@@ -40,7 +38,7 @@ YTDL-Core version  :: v${(await import(this.getPackageJSON("ytdl-core"))).versio
 Opus Encoder       :: ${opusEncoderName} v${(await import(this.getPackageJSON(opusEncoderName))).version}
 Bot Version        :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
 Data Strategy      :: ${await this.client.config.YouTubeDataRetrievingStrategy === "api" ? "REST API" : "HTML SCRAPING"}
-Source code        :: https://github.com/zhycorp/disc-11
+Código fuente      :: https://github.com/iTzKrav/vant-bot
 \`\`\`
         `)
                 .setAuthor(`${this.client.user?.username as string} - A simple Discord music bot`)
