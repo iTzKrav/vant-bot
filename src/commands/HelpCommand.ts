@@ -7,7 +7,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["h", "command", "commands", "cmd", "cmds"],
     name: "help",
-    description: "Show the command list",
+    description: "Mostrar la lista de comandos",
     usage: "{prefix}help [command]"
 })
 export class HelpCommand extends BaseCommand {
@@ -18,16 +18,16 @@ export class HelpCommand extends BaseCommand {
             message.channel.send(
                 new MessageEmbed()
                     .setColor(this.client.config.embedColor)
-                    .setAuthor(`Information for the ${command.meta.name} command`, "https://raw.githubusercontent.com/zhycorp/disc-11/main/.github/images/question_mark.png")
-                    .addFields({ name: "**Name**", value: command.meta.name, inline: true },
-                        { name: "**Description**", value: command.meta.description, inline: true },
-                        { name: "**Aliases**", value: `${Number(command.meta.aliases?.length) > 0 ? command.meta.aliases?.map(c => `${c}`).join(", ") as string : "None"}`, inline: true },
-                        { name: "**Usage**", value: `**\`${command.meta.usage?.replace(/{prefix}/g, message.client.config.prefix) as string}\`**`, inline: true })
+                    .setAuthor(`Information for the ${command.meta.name} command`, "https://i.imgur.com/aPPapMg.png")
+                    .addFields({ name: "**Nombre**", value: command.meta.name, inline: true },
+                        { name: "**Descripción**", value: command.meta.description, inline: true },
+                        { name: "**Alias**", value: `${Number(command.meta.aliases?.length) > 0 ? command.meta.aliases?.map(c => `${c}`).join(", ") as string : "None"}`, inline: true },
+                        { name: "**Uso**", value: `**\`${command.meta.usage?.replace(/{prefix}/g, message.client.config.prefix) as string}\`**`, inline: true })
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
         } else {
             message.channel.send(
                 createEmbed("info", message.client.commands.filter(cmd => !cmd.meta.disable && cmd.meta.name !== "eval").map(c => `\`${c.meta.name}\``).join(" "))
-                    .setAuthor("Command List")
+                    .setAuthor("Lista de comandos")
                     .setThumbnail(message.client.user?.displayAvatarURL() as string)
                     .setFooter(`Use ${message.client.config.prefix}help <command> to get more information on a specific command!`, "https://raw.githubusercontent.com/zhycorp/disc-11/main/.github/images/info.png")
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
