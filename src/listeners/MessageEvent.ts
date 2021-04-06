@@ -13,7 +13,7 @@ export class MessageEvent extends BaseListener {
 
         if ((await this.getUserFromMention(message.content))?.id === message.client.user?.id) {
             return message.channel.send(
-                createEmbed("info", `👋 Hi, my name is **${this.client.user!.username}** a simple Discord music bot, use **\`${this.client.config.prefix}help\`** to have a look at my commands`)
+                createEmbed("info", `👋 Hola, mi nombre es **${this.client.user!.username}** un simple bot de música Discord, usa **\`${this.client.config.prefix}help\`** para echar un vistazo a mis comandos`)
             );
         }
     }

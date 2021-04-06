@@ -6,9 +6,9 @@ import { DefineListener } from "../utils/decorators/DefineListener";
 export class ReadyEvent extends BaseListener {
     public execute(): void {
         this.client.logger.info(
-            `${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} I'm ready to serve ${this.client.guilds.cache.size} guilds ` +
-            `with ${this.client.channels.cache.filter(c => c.type === "text").size} text channels and ` +
-            `${this.client.channels.cache.filter(c => c.type === "voice").size} voice channels`
+            `${this.client.shard ? `[Shard #${this.client.shard.ids[0]}]` : ""} Estoy listo para servir ${this.client.guilds.cache.size}` +
+            `with ${this.client.channels.cache.filter(c => c.type === "text").size} canales de texto y ` +
+            `${this.client.channels.cache.filter(c => c.type === "voice").size} canales de voz`
         );
         this.doPresence();
     }
