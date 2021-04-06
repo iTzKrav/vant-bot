@@ -26,7 +26,7 @@ export class PlayCommand extends BaseCommand {
         const voiceChannel = message.member!.voice.channel!;
         if (!args[0]) {
             return message.channel.send(
-                createEmbed("error", `Invalid usage, see **\`${this.client.config.prefix}help play\`** for more information`)
+                createEmbed("error", `Uso no válido, ver **\`${this.client.config.prefix}help play\`** for more information`)
             );
         }
         const searchString = args.join(" ");
@@ -92,7 +92,7 @@ export class PlayCommand extends BaseCommand {
                     const playlistSearchStrings: string[] = await playlistData.tracks.items.map((item: any): string => `${item.track.artists[0].name} - ${item.track.name}`);
                     this.client.logger.debug(playlistSearchStrings.join("\n"));
                     const addingPlaylistVideoMessage = await message.channel.send(
-                        createEmbed("info", `Adding all music in **[${playlistData.name}](${playlistData.external_urls.spotify})** playlist, please wait...`)
+                        createEmbed("info", `Añadiendo toda la música in **[${playlistData.name}](${playlistData.external_urls.spotify})** lista de reproducción, por favor espere ...`)
                             .setThumbnail(playlistData.images[0].url)
                     );
                     for (const title of playlistSearchStrings) {
@@ -102,12 +102,12 @@ export class PlayCommand extends BaseCommand {
                     }
                     message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("SP_PLAYLIST_ERR:", e));
                     return message.channel.send(
-                        createEmbed("info", `✅ **|** All music in **[${playlistData.name}](${playlistData.external_urls.spotify})** playlist has been added to the queue`)
+                        createEmbed("info", `✅ **|** Toda la música in **[${playlistData.name}](${playlistData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
                             .setThumbnail(playlistData.images[0].url)
                     );
                 } catch (e) {
                     this.client.logger.error("SP_PLAYLIST_ERR:", new Error(e.stack));
-                    return message.channel.send(createEmbed("error", `I could not load the playlist\nError: **\`${e.message}\`**`));
+                    return message.channel.send(createEmbed("error", `No pude cargar la lista de reproducción\nError: **\`${e.message}\`**`));
                 }
             } else {
                 try {
@@ -115,7 +115,7 @@ export class PlayCommand extends BaseCommand {
                     const playlistSearchStrings: string[] = await albumData.tracks.items.map((item: any): string => `${item.artists[0].name} - ${item.name}`);
                     this.client.logger.debug(playlistSearchStrings.join("\n"));
                     const addingPlaylistVideoMessage = await message.channel.send(
-                        createEmbed("info", `Adding all music in **[${albumData.name}](${albumData.external_urls.spotify})** playlist, please wait...`)
+                        createEmbed("info", `Añadiendo toda la música in **[${albumData.name}](${albumData.external_urls.spotify})** lista de reproducción, por favor espere ...`)
                             .setThumbnail(albumData.images[0].url)
                     );
                     for (const title of playlistSearchStrings) {
@@ -125,7 +125,7 @@ export class PlayCommand extends BaseCommand {
                     }
                     message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("SP_PLAYLIST_ERR:", e));
                     return message.channel.send(
-                        createEmbed("info", `✅ **|** All music in **[${albumData.name}](${albumData.external_urls.spotify})** playlist has been added to the queue`)
+                        createEmbed("info", `✅ **|** Toda la música in **[${albumData.name}](${albumData.external_urls.spotify})** la lista de reproducción se ha agregado a la cola.`)
                             .setThumbnail(albumData.images[0].url)
                     );
                 } catch (e) {

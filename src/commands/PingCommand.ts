@@ -6,7 +6,7 @@ import { DefineCommand } from "../utils/decorators/DefineCommand";
 @DefineCommand({
     aliases: ["pong", "pang", "pung", "peng", "pingpong"],
     name: "ping",
-    description: "Show the current ping of the bot",
+    description: "Muestra el ping actual del bot",
     usage: "{prefix}ping"
 })
 export class PingCommand extends BaseCommand {

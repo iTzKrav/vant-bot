@@ -29,7 +29,7 @@ export class HelpCommand extends BaseCommand {
                 createEmbed("info", message.client.commands.filter(cmd => !cmd.meta.disable && cmd.meta.name !== "eval").map(c => `\`${c.meta.name}\``).join(" "))
                     .setAuthor("Lista de comandos")
                     .setThumbnail(message.client.user?.displayAvatarURL() as string)
-                    .setFooter(`Use ${message.client.config.prefix}help <command> to get more information on a specific command!`, "https://raw.githubusercontent.com/zhycorp/disc-11/main/.github/images/info.png")
+                    .setFooter(`Usa ${message.client.config.prefix}help <command> para obtener más información sobre un comando específico.`, "https://i.imgur.com/aPPapMg.png")
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
         }
     }
