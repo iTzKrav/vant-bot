@@ -10,7 +10,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["botinfo", "info", "stats"],
     name: "about",
-    description: "Send the information about the bot",
+    description: "Envía la información sobre el bot",
     usage: "{prefix}about"
 })
 export class AboutCommand extends BaseCommand {

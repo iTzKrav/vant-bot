@@ -22,7 +22,7 @@ start(isThisGlitch);
 
 function start(glitch = false) {
     if (glitch) {
-        console.info("[INFO] Glitch environment detected, trying to compile...");
+        console.info("[INFO] Entorno de falla detectado, intentando compilar ...");
         execSync("npm run compile");
         console.info("[INFO] Iniciando el bot...");
         if (process.env.CONFIG_CACHE_YOUTUBE_DOWNLOADS === "yes") console.warn("[WARN] No se recomienda el uso de caché en el entorno Glitch, consumirá drásticamente el almacenamiento del proyecto.");

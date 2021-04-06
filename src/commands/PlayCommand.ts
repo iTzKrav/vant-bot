@@ -15,7 +15,7 @@ import { Video } from "../utils/YouTube/structures/Video";
 @DefineCommand({
     aliases: ["p", "add", "play-music"],
     name: "play",
-    description: "Play some music",
+    description: "Pon algo de musica",
     usage: "{prefix}play <youtube video or playlist link | youtube video name>"
 })
 export class PlayCommand extends BaseCommand {
@@ -141,15 +141,15 @@ export class PlayCommand extends BaseCommand {
             } catch (e) {
                 try {
                     const videos = await this.client.youtube.searchVideos(searchString, this.client.config.searchMaxResults);
-                    if (videos.length === 0) return message.channel.send(createEmbed("error", "I could not obtain any search results, please try again"));
+                    if (videos.length === 0) return message.channel.send(createEmbed("error", "No pude obtener ningún resultado de búsqueda, inténtelo de nuevo"));
                     if (this.client.config.disableSongSelection) { video = await this.client.youtube.getVideo(videos[0].id); } else {
                         let index = 0;
                         const msg = await message.channel.send(new MessageEmbed()
                             .setColor(this.client.config.embedColor)
-                            .setAuthor("Music Selection", message.client.user?.displayAvatarURL() as string)
+                            .setAuthor("Selección de música", message.client.user?.displayAvatarURL() as string)
                             .setDescription(`\`\`\`${videos.map(video => `${++index} - ${this.cleanTitle(video.title)}`).join("\n")}\`\`\`` +
-                                "\nPlease select one of the results ranging from **\`1-10\`**")
-                            .setFooter("• Type cancel or c to cancel the music selection"));
+                                "\nSeleccione uno de los resultados que van desde **\`1-10\`**")
+                            .setFooter("• Escribe CANCELAR o C para cancelar la selección de música"));
                         try {
                             // eslint-disable-next-line no-var
                             var response = await message.channel.awaitMessages((msg2: IMessage) => {
@@ -165,10 +165,10 @@ export class PlayCommand extends BaseCommand {
                             response.first()?.delete({ timeout: 3000 }).catch(e => e);
                         } catch (error) {
                             msg.delete().catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
-                            return message.channel.send(createEmbed("error", "No or invalid value entered, the music selection has canceled"));
+                            return message.channel.send(createEmbed("error", "No se ingresó un valor o no es válido, la selección de música se canceló"));
                         }
                         if (response.first()?.content === "c" || response.first()?.content === "cancel") {
-                            return message.channel.send(createEmbed("warn", "The music selection has canceled"));
+                            return message.channel.send(createEmbed("warn", "La selección de música se canceló."));
                         }
                         const videoIndex = parseInt(response.first()?.content as string);
                         video = await this.client.youtube.getVideo(videos[videoIndex - 1].id);
@@ -195,7 +195,7 @@ export class PlayCommand extends BaseCommand {
                 return message.channel.send(
                     createEmbed("warn", `🎶 **|** **[${song.title}](${song.url})** is already queued, ` +
                 `please use **\`${this.client.config.prefix}repeat\`** command instead`)
-                        .setTitle("Already Queued")
+                        .setTitle("Ya en cola")
                 );
             }
             message.guild.queue.songs.addSong(song);
